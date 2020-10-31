@@ -23,7 +23,7 @@ class Roy1 extends Component {
           number1: 10,
           number2: 20,
           result: 0,
-          npages:0,
+          npages:'',
           bookformat:''
         };
 
@@ -66,7 +66,7 @@ class Roy1 extends Component {
         if(this.state.bookformat=='Paperback'){
             booktype=1000;
 
-        }else if(this.state.bookformat=='Hardcase'){
+        }else if(this.state.bookformat=='Ebook'){
             booktype=2000;
 
         }
@@ -237,11 +237,11 @@ class Roy1 extends Component {
                                </option>
                                <option
                                  className="long-book"
-                                 value="Hardcase"
+                                 value="Ebook"
                                  id="hARdCase"
                                  style={{ display: "block" }}
                                >
-                                 Hardcase
+                                 Ebook
                                </option>
                              </select>
                            </div>
@@ -258,9 +258,9 @@ class Roy1 extends Component {
                                <option value="203-127" selected="selected">
                                  5" x 8"
                                </option>
-                               <option value="216-140">5.5" x 8.5"</option>
+                              {/* <option value="216-140">5.5" x 8.5"</option>*/}
                                <option value="229-152">6" x 9"</option>
-                               <option value="216-216">8.5" x 8.5"</option>
+                               {/*<option value="216-216">8.5" x 8.5"</option>*/}
                                <option value="279-216">8.5" x 11"</option>
                              </select>
                            </div>
@@ -277,7 +277,7 @@ class Roy1 extends Component {
                                <option value="bw" selected="selected">
                                  Black &amp; White
                                </option>
-                               <option value="color">Full Color</option>
+                               {/*<option value="color">Full Color</option>*/}
                              </select>
                            </div>
                          </div>
@@ -452,7 +452,7 @@ class Roy1 extends Component {
                      <div className="col-lg-12 row-class paddingtop ">
                        <div className="row">
                          <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
-                           <label>BFC Publication</label>
+                           <label>BFC Publications</label>
                          </div>
                          <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
                            <span className="delimiter"></span>
@@ -523,7 +523,7 @@ class Roy1 extends Component {
                </li>
                <li>
                  <strong>
-                   Why is the profit higher when I sell via the BFC Publication
+                   Why is the profit higher when I sell via the BFC Publications
                    Bookstore?
                  </strong>
                  <p>
