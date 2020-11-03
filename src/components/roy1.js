@@ -24,6 +24,7 @@ class Roy1 extends Component {
           number2: 20,
           result: 0,
           npages:'',
+          setmrp:'',
           bookformat:''
         };
 
@@ -33,6 +34,10 @@ class Roy1 extends Component {
 
 
       handleOnChange = e => {
+      
+
+     // handleOnChange(e){
+        console.log("ffff Line37",e.target.value);
         const { target: { value, name } } = e;
      
         this.setState({
@@ -41,11 +46,21 @@ class Roy1 extends Component {
 
       }
 
+    //  handleOnChange1(event){ 
+      handleOnChange1 = event => { 
+
+        console.log("ffff Line48",event.target.value);
+      //  console.log(event.target.value);
+       
+       this.setState({setmrp: event.target.value});
+
+      }
+
 
       handleChangeSelect(event) {
          console.log(event.target.value);
 
-         console.log("-----------vvvvvv");
+        // console.log("-----------vvvvvv");
     //    console.log(event.target);
          this.setState({bookformat: event.target.value});
        // this.setState();       
@@ -58,37 +73,907 @@ class Roy1 extends Component {
         event.preventDefault();
       }
 
-     
       handleResult = e => {
-
-       // alert('Your favorite flavor is...: ' + this.state.bookformat);
-         let booktype=0;
-        if(this.state.bookformat=='Paperback'){
-            booktype=1000;
-
-        }else if(this.state.bookformat=='Ebook'){
-            booktype=2000;
-
-        }
-
-        this.setState({
-        //   result: this.state.number1 + this.state.number2
-        // if(this.state.bookformat=='Paperback'){   sdf=5253; }
+       let booktype=0;
+       if(this.refs.bookFormat.value=='Paperback'){
+          if(this.refs.npages.value <= 72){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log("<= 72 5x8")
+              booktype=0.505
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.618
+              console.log(" <= 72 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.72
+              console.log(" <= 72 8.5x11")
+            }else{}
+           
+          }else if(this.refs.npages.value >= 73 && this.refs.npages.value <=96){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 73 <=96 5x8")
+              booktype=0.505
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.618
+              console.log(" >= 73 <=96 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+                booktype=0.61
+                console.log(" >= 73 <=96 8.5x11")
+              }else{}
+          
+          }else if(this.refs.npages.value >= 97 && this.refs.npages.value <=108 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 97 <=108 5x8")
+              booktype=0.433
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.502
+              console.log(">= 97 <=108 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.61
+              console.log(" >= 97 <=108 8.5x11")
+            }else{}
+          
+          }else if(this.refs.npages.value >= 109 && this.refs.npages.value <=128 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 109 <=128 5x8")
+              booktype=0.433
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.502
+              console.log(">= 109 <=128 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.57
+              console.log(">= 109 <=128 8.5x11")
+            }else{}
+          
+          }else if(this.refs.npages.value >= 129 && this.refs.npages.value <=148 ){
+              if(this.refs.bookSize.value =='5x8'){
+                console.log(">= 129 <=148 5x8")
+                booktype=0.360
+              }else if(this.refs.bookSize.value =='6x9'){
+                booktype=0.473
+                console.log(">= 129 <=148 6x9")
+              }else if(this.refs.bookSize.value =='8.5x11'){
+                booktype=0.55
+                console.log(">= 129 <=148 8.5x11")
+              }else{}
+            
+          }else if(this.refs.npages.value >= 149 && this.refs.npages.value <=192 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 149 <=192 5x8")
+              booktype=0.360
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.473
+              console.log(">= 149 <=192 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.49
+              console.log(">= 149 <=192 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 193 && this.refs.npages.value <=216 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 193 <=216 5x8")
+              booktype=0.324
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.437
+              console.log(">= 193 <=216 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.49
+              console.log(">= 193 <=216 8.5x11")
+            }else{}
+    
+          }else if(this.refs.npages.value >= 217 && this.refs.npages.value <=252 ){
+           
+            if(this.refs.bookSize.value =='5x8'){
+              console.log("5x8 >= 217  <=252  ")
+              booktype=0.324
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.437
+              console.log(">= 217  <=252 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 217  <=252 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 253 && this.refs.npages.value <=256 ){
          
-      //  result: this.state.npages+99+booktype
-      prodcostx: this.state.npages+99+booktype
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 253 <=256 5x8")
+              booktype=0.324
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.437
+              console.log(">= 253 <=256 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 253 <=2568.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 257 && this.refs.npages.value <=276 ){
+           
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 257 <=276 5x8")
+              booktype=0.313
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.415
+              console.log(">= 257 <=276 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 257 <=276 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 277 && this.refs.npages.value <=320 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 277 <=320 5x8")
+              booktype=0.313
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.415
+              console.log(">= 277 <=320 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 277 <=320 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 321 && this.refs.npages.value <=352 ){
+            
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 321 <=352 5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(" >= 321 <=3526x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.44
+              console.log(" >= 321 <=3528.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 353 && this.refs.npages.value <=384 ){
+           
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 353 <=384 5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 353 <=384 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.43
+              console.log(">= 353 <=384 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 385 && this.refs.npages.value <=432 ){
+           
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 385  <=432  5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 385  <=432  6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.42
+              console.log(">= 385  <=432  8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 433 && this.refs.npages.value <=492 ){
+           
+            if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.41
+              console.log(">= 433 <=492 8.5x11")
+            }if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 433 <=492 5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 433 <=492 6x9")
+            }else{
+              
+            }
+          }else if(this.refs.npages.value >= 493 && this.refs.npages.value <=548 ){
+           
+            if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.41
+              console.log(">= 493 <=548 6x9")
+            }if(this.refs.bookSize.value =='5x8'){
+             booktype=0.305
+             console.log(">= 493 <=548 6x9")
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 493 <=548 6x9")
+            }else{
 
-      //  prodcostx: this.state.npages+99+booktype;
-      //  author_copies_price: this.state.npages+99+booktype;
-      
- 
+            }
+          }else if(this.refs.npages.value >=549 ){
+            if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.41
+              console.log(">= 493 <=548 6x9")
+            }if(this.refs.bookSize.value =='5x8'){
+             booktype=0.305
+             console.log(">= 493 <=548 6x9")
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 493 <=548 6x9")
+            }else{
 
-     
+            }
+          }else{
+
+          }
+          var prodcost = this.state.npages*booktype+8.5
+          prodcost = parseFloat(prodcost).toFixed(2);
+          var prodsubpercentage = (prodcost*15)/100
+
+          var prodsubpercentagetot = prodcost + prodsubpercentage
+          prodsubpercentagetot = parseFloat(prodsubpercentagetot).toFixed(2);
+          var minprice = prodcost*2.5
+          minprice = parseFloat(minprice).toFixed(2);
+       }else if(this.refs.bookFormat.value=='Ebook'){
+          if(this.refs.npages.value <= 72){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log("<= 72 5x8")
+              booktype=0.505
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.618
+              console.log(" <= 72 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.72
+              console.log(" <= 72 8.5x11")
+            }else{}
+          
+          }else if(this.refs.npages.value >= 73 && this.refs.npages.value <=96){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 73 <=96 5x8")
+              booktype=0.505
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.618
+              console.log(" >= 73 <=96 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+                booktype=0.61
+                console.log(" >= 73 <=96 8.5x11")
+              }else{}
+          
+          }else if(this.refs.npages.value >= 97 && this.refs.npages.value <=108 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 97 <=108 5x8")
+              booktype=0.433
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.502
+              console.log(">= 97 <=108 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.61
+              console.log(" >= 97 <=108 8.5x11")
+            }else{}
+          
+          }else if(this.refs.npages.value >= 109 && this.refs.npages.value <=128 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 109 <=128 5x8")
+              booktype=0.433
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.502
+              console.log(">= 109 <=128 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.57
+              console.log(">= 109 <=128 8.5x11")
+            }else{}
+          
+          }else if(this.refs.npages.value >= 129 && this.refs.npages.value <=148 ){
+              if(this.refs.bookSize.value =='5x8'){
+                console.log(">= 129 <=148 5x8")
+                booktype=0.360
+              }else if(this.refs.bookSize.value =='6x9'){
+                booktype=0.473
+                console.log(">= 129 <=148 6x9")
+              }else if(this.refs.bookSize.value =='8.5x11'){
+                booktype=0.55
+                console.log(">= 129 <=148 8.5x11")
+              }else{}
+            
+          }else if(this.refs.npages.value >= 149 && this.refs.npages.value <=192 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 149 <=192 5x8")
+              booktype=0.360
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.473
+              console.log(">= 149 <=192 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.49
+              console.log(">= 149 <=192 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 193 && this.refs.npages.value <=216 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 193 <=216 5x8")
+              booktype=0.324
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.437
+              console.log(">= 193 <=216 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.49
+              console.log(">= 193 <=216 8.5x11")
+            }else{}
+    
+          }else if(this.refs.npages.value >= 217 && this.refs.npages.value <=252 ){
+          
+            if(this.refs.bookSize.value =='5x8'){
+              console.log("5x8 >= 217  <=252  ")
+              booktype=0.324
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.437
+              console.log(">= 217  <=252 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 217  <=252 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 253 && this.refs.npages.value <=256 ){
+        
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 253 <=256 5x8")
+              booktype=0.324
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.437
+              console.log(">= 253 <=256 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 253 <=2568.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 257 && this.refs.npages.value <=276 ){
+          
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 257 <=276 5x8")
+              booktype=0.313
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.415
+              console.log(">= 257 <=276 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 257 <=276 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 277 && this.refs.npages.value <=320 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 277 <=320 5x8")
+              booktype=0.313
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.415
+              console.log(">= 277 <=320 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 277 <=320 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 321 && this.refs.npages.value <=352 ){
+            
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 321 <=352 5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(" >= 321 <=3526x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.44
+              console.log(" >= 321 <=3528.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 353 && this.refs.npages.value <=384 ){
+          
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 353 <=384 5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 353 <=384 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.43
+              console.log(">= 353 <=384 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 385 && this.refs.npages.value <=432 ){
+          
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 385  <=432  5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 385  <=432  6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.42
+              console.log(">= 385  <=432  8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 433 && this.refs.npages.value <=492 ){
+          
+            if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.41
+              console.log(">= 433 <=492 8.5x11")
+            }if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 433 <=492 5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 433 <=492 6x9")
+            }else{
+              
+            }
+          }else if(this.refs.npages.value >= 493 && this.refs.npages.value <=548 ){
+          
+            if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.41
+              console.log(">= 493 <=548 6x9")
+            }if(this.refs.bookSize.value =='5x8'){
+            booktype=0.305
+            console.log(">= 493 <=548 6x9")
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 493 <=548 6x9")
+            }else{
+
+            }
+          }else if(this.refs.npages.value >=549 ){
+            if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.41
+              console.log(">= 493 <=548 6x9")
+            }if(this.refs.bookSize.value =='5x8'){
+            booktype=0.305
+            console.log(">= 493 <=548 6x9")
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 493 <=548 6x9")
+            }else{
+
+            }
+          }else{
+
+          }
+          var prodcost = this.state.npages*booktype+8.5
+          prodcost = parseFloat(prodcost).toFixed(2);
+          var prodsubpercentage = (prodcost*15)/100
+
+          var prodsubpercentagetot = prodcost + prodsubpercentage
+          prodsubpercentagetot = parseFloat(prodsubpercentagetot).toFixed(2);
+          var minprice = prodcost*2.5
+          minprice = minprice*0.60
+          minprice = parseFloat(minprice).toFixed(2);
+       }else{}
+        this.setState({
+          prodcostx: prodcost,
+          prodsubcostx: prodsubpercentagetot,
+          minprice:minprice
         });
-
-
-
       }
+
+
+      handleResult1 = e => {
+        let booktype=0;
+       if(this.refs.bookFormat.value=='Paperback'){
+          if(this.refs.npages.value <= 72){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log("<= 72 5x8")
+              booktype=0.505
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.618
+              console.log(" <= 72 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.72
+              console.log(" <= 72 8.5x11")
+            }else{}
+           
+          }else if(this.refs.npages.value >= 73 && this.refs.npages.value <=96){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 73 <=96 5x8")
+              booktype=0.505
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.618
+              console.log(" >= 73 <=96 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+                booktype=0.61
+                console.log(" >= 73 <=96 8.5x11")
+              }else{}
+          
+          }else if(this.refs.npages.value >= 97 && this.refs.npages.value <=108 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 97 <=108 5x8")
+              booktype=0.433
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.502
+              console.log(">= 97 <=108 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.61
+              console.log(" >= 97 <=108 8.5x11")
+            }else{}
+          
+          }else if(this.refs.npages.value >= 109 && this.refs.npages.value <=128 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 109 <=128 5x8")
+              booktype=0.433
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.502
+              console.log(">= 109 <=128 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.57
+              console.log(">= 109 <=128 8.5x11")
+            }else{}
+          
+          }else if(this.refs.npages.value >= 129 && this.refs.npages.value <=148 ){
+              if(this.refs.bookSize.value =='5x8'){
+                console.log(">= 129 <=148 5x8")
+                booktype=0.360
+              }else if(this.refs.bookSize.value =='6x9'){
+                booktype=0.473
+                console.log(">= 129 <=148 6x9")
+              }else if(this.refs.bookSize.value =='8.5x11'){
+                booktype=0.55
+                console.log(">= 129 <=148 8.5x11")
+              }else{}
+            
+          }else if(this.refs.npages.value >= 149 && this.refs.npages.value <=192 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 149 <=192 5x8")
+              booktype=0.360
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.473
+              console.log(">= 149 <=192 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.49
+              console.log(">= 149 <=192 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 193 && this.refs.npages.value <=216 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 193 <=216 5x8")
+              booktype=0.324
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.437
+              console.log(">= 193 <=216 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.49
+              console.log(">= 193 <=216 8.5x11")
+            }else{}
+    
+          }else if(this.refs.npages.value >= 217 && this.refs.npages.value <=252 ){
+           
+            if(this.refs.bookSize.value =='5x8'){
+              console.log("5x8 >= 217  <=252  ")
+              booktype=0.324
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.437
+              console.log(">= 217  <=252 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 217  <=252 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 253 && this.refs.npages.value <=256 ){
+         
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 253 <=256 5x8")
+              booktype=0.324
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.437
+              console.log(">= 253 <=256 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 253 <=2568.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 257 && this.refs.npages.value <=276 ){
+           
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 257 <=276 5x8")
+              booktype=0.313
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.415
+              console.log(">= 257 <=276 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 257 <=276 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 277 && this.refs.npages.value <=320 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 277 <=320 5x8")
+              booktype=0.313
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.415
+              console.log(">= 277 <=320 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 277 <=320 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 321 && this.refs.npages.value <=352 ){
+            
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 321 <=352 5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(" >= 321 <=3526x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.44
+              console.log(" >= 321 <=3528.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 353 && this.refs.npages.value <=384 ){
+           
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 353 <=384 5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 353 <=384 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.43
+              console.log(">= 353 <=384 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 385 && this.refs.npages.value <=432 ){
+           
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 385  <=432  5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 385  <=432  6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.42
+              console.log(">= 385  <=432  8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 433 && this.refs.npages.value <=492 ){
+           
+            if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.41
+              console.log(">= 433 <=492 8.5x11")
+            }if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 433 <=492 5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 433 <=492 6x9")
+            }else{
+              
+            }
+          }else if(this.refs.npages.value >= 493 && this.refs.npages.value <=548 ){
+           
+            if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.41
+              console.log(">= 493 <=548 6x9")
+            }if(this.refs.bookSize.value =='5x8'){
+             booktype=0.305
+             console.log(">= 493 <=548 6x9")
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 493 <=548 6x9")
+            }else{
+
+            }
+          }else if(this.refs.npages.value >=549 ){
+            if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.41
+              console.log(">= 493 <=548 6x9")
+            }if(this.refs.bookSize.value =='5x8'){
+             booktype=0.305
+             console.log(">= 493 <=548 6x9")
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 493 <=548 6x9")
+            }else{
+
+            }
+          }else{}
+          var prodcost = this.state.npages*booktype+8.5
+          var prodsubpercentage = (prodcost*15)/100
+          var prodsubpercentagetot = prodcost + prodsubpercentage
+          var mrp = prodcost*2.5
+          var prodcost = this.state.npages*booktype+8.5
+        //var mrp = this.state.setmrp
+        var brfmrppercent  = (mrp * 15)/100
+        var othermrppercent  = (mrp * 50)/100
+        var setbfcprice = (mrp-(prodcost + brfmrppercent))*85/100
+        setbfcprice = parseFloat(setbfcprice).toFixed(2);
+        var setohterprice = (mrp-(prodcost + othermrppercent))*85/100
+        setohterprice = parseFloat(setohterprice).toFixed(2);
+       }else if(this.refs.bookFormat.value=='Ebook'){
+          if(this.refs.npages.value <= 72){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log("<= 72 5x8")
+              booktype=0.505
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.618
+              console.log(" <= 72 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.72
+              console.log(" <= 72 8.5x11")
+            }else{}
+          
+          }else if(this.refs.npages.value >= 73 && this.refs.npages.value <=96){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 73 <=96 5x8")
+              booktype=0.505
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.618
+              console.log(" >= 73 <=96 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+                booktype=0.61
+                console.log(" >= 73 <=96 8.5x11")
+              }else{}
+          
+          }else if(this.refs.npages.value >= 97 && this.refs.npages.value <=108 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 97 <=108 5x8")
+              booktype=0.433
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.502
+              console.log(">= 97 <=108 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.61
+              console.log(" >= 97 <=108 8.5x11")
+            }else{}
+          
+          }else if(this.refs.npages.value >= 109 && this.refs.npages.value <=128 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 109 <=128 5x8")
+              booktype=0.433
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.502
+              console.log(">= 109 <=128 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.57
+              console.log(">= 109 <=128 8.5x11")
+            }else{}
+          
+          }else if(this.refs.npages.value >= 129 && this.refs.npages.value <=148 ){
+              if(this.refs.bookSize.value =='5x8'){
+                console.log(">= 129 <=148 5x8")
+                booktype=0.360
+              }else if(this.refs.bookSize.value =='6x9'){
+                booktype=0.473
+                console.log(">= 129 <=148 6x9")
+              }else if(this.refs.bookSize.value =='8.5x11'){
+                booktype=0.55
+                console.log(">= 129 <=148 8.5x11")
+              }else{}
+            
+          }else if(this.refs.npages.value >= 149 && this.refs.npages.value <=192 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 149 <=192 5x8")
+              booktype=0.360
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.473
+              console.log(">= 149 <=192 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.49
+              console.log(">= 149 <=192 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 193 && this.refs.npages.value <=216 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 193 <=216 5x8")
+              booktype=0.324
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.437
+              console.log(">= 193 <=216 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.49
+              console.log(">= 193 <=216 8.5x11")
+            }else{}
+    
+          }else if(this.refs.npages.value >= 217 && this.refs.npages.value <=252 ){
+          
+            if(this.refs.bookSize.value =='5x8'){
+              console.log("5x8 >= 217  <=252  ")
+              booktype=0.324
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.437
+              console.log(">= 217  <=252 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 217  <=252 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 253 && this.refs.npages.value <=256 ){
+        
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 253 <=256 5x8")
+              booktype=0.324
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.437
+              console.log(">= 253 <=256 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 253 <=2568.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 257 && this.refs.npages.value <=276 ){
+          
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 257 <=276 5x8")
+              booktype=0.313
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.415
+              console.log(">= 257 <=276 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 257 <=276 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 277 && this.refs.npages.value <=320 ){
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 277 <=320 5x8")
+              booktype=0.313
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.415
+              console.log(">= 277 <=320 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.46
+              console.log(">= 277 <=320 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 321 && this.refs.npages.value <=352 ){
+            
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 321 <=352 5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(" >= 321 <=3526x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.44
+              console.log(" >= 321 <=3528.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 353 && this.refs.npages.value <=384 ){
+          
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(" >= 353 <=384 5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 353 <=384 6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.43
+              console.log(">= 353 <=384 8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 385 && this.refs.npages.value <=432 ){
+          
+            if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 385  <=432  5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 385  <=432  6x9")
+            }else if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.42
+              console.log(">= 385  <=432  8.5x11")
+            }else{}
+          }else if(this.refs.npages.value >= 433 && this.refs.npages.value <=492 ){
+          
+            if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.41
+              console.log(">= 433 <=492 8.5x11")
+            }if(this.refs.bookSize.value =='5x8'){
+              console.log(">= 433 <=492 5x8")
+              booktype=0.305
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 433 <=492 6x9")
+            }else{
+              
+            }
+          }else if(this.refs.npages.value >= 493 && this.refs.npages.value <=548 ){
+          
+            if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.41
+              console.log(">= 493 <=548 6x9")
+            }if(this.refs.bookSize.value =='5x8'){
+            booktype=0.305
+            console.log(">= 493 <=548 6x9")
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 493 <=548 6x9")
+            }else{
+
+            }
+          }else if(this.refs.npages.value >=549 ){
+            if(this.refs.bookSize.value =='8.5x11'){
+              booktype=0.41
+              console.log(">= 493 <=548 6x9")
+            }if(this.refs.bookSize.value =='5x8'){
+            booktype=0.305
+            console.log(">= 493 <=548 6x9")
+            }else if(this.refs.bookSize.value =='6x9'){
+              booktype=0.400
+              console.log(">= 493 <=548 6x9")
+            }else{
+
+            }
+          }else{}
+          var prodcost = this.state.npages*booktype+8.5
+          var mrp = prodcost*2.5
+          mrp = parseFloat(mrp).toFixed(2);
+          var brfmrppercent  = (mrp * 15)/100
+          var othermrppercent  = (mrp * 50)/100
+          var setbfcprice = (mrp-brfmrppercent)*85/100
+          setbfcprice = parseFloat(setbfcprice).toFixed(2);
+          var setohterprice = (mrp-brfmrppercent)*85/100
+          setohterprice = parseFloat(setohterprice).toFixed(2);
+       }else{}
+         this.setState({
+           bfcprice: setbfcprice,
+           otherprice:setohterprice
+           
+         });
+ 
+ 
+ 
+       }
 
 
 
@@ -168,6 +1053,7 @@ class Roy1 extends Component {
                                id="npages"
                                name="npages"
                                value={this.state.npages}
+                               ref="npages"
                                required
                                
                              />
@@ -215,22 +1101,17 @@ class Roy1 extends Component {
                              <span className="delimiter"></span>
                              <select                                         
                                onChange={this.handleChangeSelect}   
-                               value={this.state.value}                                       
+                               value={this.state.value}  
+                               name="bookFormat"
+                               id="bookFormat" 
+                               ref="bookFormat"  
                                required                                    
 
                              >
                                <option
-                                 className="short-book"
-                                 value="Saddle stitch"
-                                 disabled="disabled"
-                                 style={{ display: "none" }}
-                               >
-                                 Saddle stitch
-                               </option>
-                               <option
                                  className="long-book"
                                  value="Paperback"
-                                 id="paPERBack"
+                                 id="Paperback"
                                  style={{ display: "block" }}
                                >
                                  Paperback
@@ -238,7 +1119,7 @@ class Roy1 extends Component {
                                <option
                                  className="long-book"
                                  value="Ebook"
-                                 id="hARdCase"
+                                 id="Ebook"
                                  style={{ display: "block" }}
                                >
                                  Ebook
@@ -254,14 +1135,14 @@ class Roy1 extends Component {
                            </div>
                            <div className="col-lg-8 col-md-7 col-sm-8 col-8 nopadding">
                              <span className="delimiter"></span>
-                             <select id="booksize" name="booksize" required>
-                               <option value="203-127" selected="selected">
+                             <select id="booksize" name="booksize" ref="bookSize" required>
+                               <option value="5x8" selected="selected">
                                  5" x 8"
                                </option>
                               {/* <option value="216-140">5.5" x 8.5"</option>*/}
-                               <option value="229-152">6" x 9"</option>
+                               <option value="6x9">6" x 9"</option>
                                {/*<option value="216-216">8.5" x 8.5"</option>*/}
-                               <option value="279-216">8.5" x 11"</option>
+                               <option value="8.5x11">8.5" x 11"</option>
                              </select>
                            </div>
                          </div>
@@ -273,7 +1154,7 @@ class Roy1 extends Component {
                            </div>
                            <div className="col-lg-8 col-md-7 col-sm-8 col-8 nopadding">
                              <span className="delimiter"></span>
-                             <select id="bookColor" name="bookcolor" required>
+                             <select id="bookColor" name="bookcolor"  ref="bookColor" required>
                                <option value="bw" selected="selected">
                                  Black &amp; White
                                </option>
@@ -321,8 +1202,8 @@ class Roy1 extends Component {
                            </div>
                            <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
                              <span className="delimiter"> </span>
-                             <span className="value author_copies_price" id="author_copies_price">
-                             Rs. {this.state.author_copies_price}
+                             <span className="value prodsubcostx" id="prodsubcostx">
+                             Rs. {this.state.prodsubcostx}
                              </span>
                            </div>
                          </div>
@@ -331,7 +1212,7 @@ class Roy1 extends Component {
                          This is the price at which you can purchase your own
                          book. The minimum number of copies per order is 20.
                        </p>
-                       {/*										<p class="col-lg-12">* Production cost for a book printed in black and white.</p>*/}
+                      
                      </div>
                    </div>
                  </div>
@@ -343,10 +1224,10 @@ class Roy1 extends Component {
                <div className="col-lg-12 nopadding">
                  <h4>AUTHOR EARNINGS CALCULATOR</h4>
                </div>
-               <form
+               {/* <form
                  id="authorRoyalty"
                  className="formcontainer col-lg-12 nopadding"
-               >
+               >*/}
                  <input type="hidden" name="VISITS" defaultValue={1} />
                  <input
                    type="hidden"
@@ -407,15 +1288,18 @@ class Roy1 extends Component {
                            <span className="delimiter"></span>
                            <input
                              type="number"
+                             onChange={this.handleOnChange1}
                              id="setmrp"
                              name="setmrp"
+                             value={this.state.setmrp}
+                             ref="setmrp"
                              required
                            />
                          </div>
                        </div>
                        <div className="row align-items-xl-end align-items-md-end align-items-sm-end align-items-center align-items-lg-center">
                          <div className="col-lg-12 col-md-5 col-sm-4 col-4 nopadding">
-                           <label>Minimum Recommended Price</label><span id="minmrp">Rs. 225</span>
+                           <label>Minimum Recommended Price</label><span id="minmrp">Rs. {this.state.minprice}</span>
                          </div>
                          
                        </div>
@@ -426,11 +1310,12 @@ class Roy1 extends Component {
                  <div className="col-lg-12 button text-center">
                    <button
                      className="btn btn-primary"
-                     id="calculateprofit"
-                     name="calculateprofit"
+                     onClick={this.handleResult1}
                    >
                      Calculate
                    </button>
+                  
+                   
                  </div>
                  <div
                    className="bottombox col-lg-12 display_values calculation-section"
@@ -457,7 +1342,7 @@ class Roy1 extends Component {
                          <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
                            <span className="delimiter"></span>
                            <span id="npauthorprofit" className="result value">
-                             Rs. 122.19
+                             Rs. {this.state.bfcprice}
                            </span>
                          </div>
                        </div>
@@ -473,14 +1358,14 @@ class Roy1 extends Component {
                              id="flipkartauthorprofit"
                              className="result value"
                            >
-                             Rs. 52.89
+                             Rs.  {this.state.otherprice}
                            </span>
                          </div>
                        </div>
                      </div>
                    </div>
                  </div>
-               </form>
+               {/*</form>*/}
              </div>
            </div>
          </div>
