@@ -512,7 +512,7 @@ class Roy1 extends Component {
           var prodsubpercentagetot = prodcost + prodsubpercentage
           prodsubpercentagetot = parseFloat(prodsubpercentagetot).toFixed(2);
           var minprice = prodcost*2.5
-          minprice = minprice*0.60
+          minprice = minprice*0.6
           minprice = parseFloat(minprice).toFixed(2);
        }else{}
         this.setState({
@@ -1007,7 +1007,7 @@ class Roy1 extends Component {
              <div className="col-lg-12 col-xl-11 ml-xl-auto col-md-padding-7 col-md-nopadding">
                <div className="row margin-top-20">
                  <div className="col-lg-12">
-                   <h4>FILL BOOK DETAILS</h4>
+                   <h4>FILL BOOK DETAILS HERE</h4>
                  </div>
                  <div
                    id="productionCost"
