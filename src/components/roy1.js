@@ -287,7 +287,7 @@ class Roy1 extends Component {
 
           }
           var prodcost = this.state.npages*booktype+8.5
-          prodcost = parseFloat(prodcost).toFixed(2);
+         // prodcost = parseFloat(prodcost).toFixed(2);
           var prodsubpercentage = (prodcost*15)/100
 
           var prodsubpercentagetot = prodcost + prodsubpercentage
