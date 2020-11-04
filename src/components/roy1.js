@@ -1006,7 +1006,7 @@ class Roy1 extends Component {
              <div className="col-lg-12 col-xl-11 ml-xl-auto col-md-padding-7 col-md-nopadding">
                <div className="row margin-top-20">
                  <div className="col-lg-12">
-                   <h4>FILL BOOK DETAILS HERE</h4>
+                   <h4>FILL BOOK DETAILS</h4>
                  </div>
                  <div
                    id="productionCost"
