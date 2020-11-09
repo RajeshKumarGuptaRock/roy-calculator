@@ -1138,7 +1138,8 @@ class Roy1 extends Component {
                   <div class="card-body">
                    
                         <tr>
-                           <td colspan="3">This is the price at which you can purchase your own book the minimum number of copies per order is 20.</td>
+                           <td colspan="3">Set a selling price above the Minimum Selling Price
+                         and hit 'Calculate' to see how much you earn.</td>
                         </tr>
                         
                         <br/> 
