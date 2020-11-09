@@ -1182,7 +1182,7 @@ class Roy1 extends Component {
                            <th>Author Earning Per Copy</th>
                         </tr>
                         <tr>
-                           <th>BFC Publication</th>
+                           <th>BFC Publications</th>
                            <td>: </td>
                            <td> Rs. {this.state.bfcprice}</td>
                         </tr>
