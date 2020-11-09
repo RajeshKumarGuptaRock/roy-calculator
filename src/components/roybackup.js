@@ -982,35 +982,90 @@ class Roy1 extends Component {
           <div>
             {
  <ProductWrapper>
-
-   <div className="container ">
-     <h2 className="text-center mt-5">Calculate Author Earnings</h2>
-     <hr className="border-bottom-info-2 mb-5"/>
+ <div className="col-lg-12 royaltycalculator section_padding reset_section_padding_bottom">
+ <div className>
+   <div className="container royaltytitle">
+     <div className="row justify-content-center">
+       <h6 className="main-heading-rock">Calculate Author Earnings</h6>                 
      </div>
-   <div className="container mb-5">
+     <div className="row justify-content-center">
+       {/*<p>Calculate your profit margins and set your ideal selling price.</p>*/}
+     </div>
+    
+     <div className="row justify-content-center">
+       <div className="button_container">
+         
+       </div>
+     </div>
+   </div>
+   <div className="container">
      <div className="row">
-
-     <div className="col-md-6">
-        <div className="card shadow ">
-            <div className="card-header text-center font-weight-bold text-light bg-info text-uppercase">
-                Enter Book Deatils
-            </div>
-            <div className="card-body">
-               
-                   <div className="form-group row">
-                <label for="No of Pages" className="col-sm-5 col-form-label">Number Of Pages</label>
-                <div className="col-sm-7">
-               <input
+       <div className="col-lg-12 col-md-nopadding">
+         <div className="row">
+           <div className="col-lg-6 col-md-6 enterdetails col-md-nopadding col-md-padding-7 card1">
+             <div className="col-lg-12 col-xl-11 ml-xl-auto col-md-padding-7 col-md-nopadding">
+               <div className="row margin-top-20">
+                 <div className="col-lg-12">
+                   <h4>FILL BOOK DETAILS</h4>
+                 </div>
+                 <div
+                   id="productionCost"
+                   className="formcontainer col-lg-12"
+                    
+                 >
+                   <input type="hidden" name="VISITS" defaultValue={1} />
+                   <input
+                     type="hidden"
+                     name="ILANDPAGE"
+                     defaultValue="https%3A//notionpress.com/pod-royalty-calculator"
+                   />
+                   <input
+                     type="hidden"
+                     name="LREFERRER"
+                     defaultValue="https%3A//www.google.com/"
+                   />
+                   <input
+                     type="hidden"
+                     name="IREFERRER"
+                     defaultValue="https%3A//www.google.com/"
+                   />
+                   <input
+                     type="hidden"
+                     defaultValue="diy"
+                     name="publishingmode"
+                   />
+                   <div
+                     className="get_values centerbox col-lg-12"
+                     style={{ minHeight: 251 }}
+                   >
+                     <div className="row">
+                       <div className="col-lg-12">
+                         <div className="row align-items-center" id={1}>
+                           <div className="col-lg-4 col-md-5 col-sm-4 col-4 nopadding">
+                             <label>Number of Pages</label>
+                           </div>
+                           <div className="col-lg-8 col-md-7 col-sm-8 col-8 nopadding">
+                             <span className="delimiter"></span>
+                             <input
                                type="number"
                                onChange={this.handleOnChange}
                                id="npages"
                                name="npages"
                                value={this.state.npages}
                                ref="npages"
-                               className="form-control"
                                required
                                
                              />
+{/* <div className="Calculator">
+<input onChange={this.handleOnChange} name="number1" type="text" value={this.state.number1} />
+{' + '}
+<input onChange={this.handleOnChange} name="number2" type="text" value={this.state.number2} />
+<p><button onClick={this.handleResult}>=</button></p>
+
+<p className="result">{this.state.result}</p>
+</div>
+*/}
+
 
                              <div
                                className="alert alert-danger hidealert"
@@ -1033,21 +1088,23 @@ class Roy1 extends Component {
                              >
                                Pages should be between 4 to 700.
                              </div>
-                </div>    
-                   </div>
-                   
-                    <div className="form-group row">
-                <label for="No of Pages" className="col-sm-5 col-form-label">Book Format </label>
-                <div className="col-sm-7">
-              
-                     <select                                         
+                           </div>
+                         </div>
+                       </div>
+                       <div className="col-lg-12">
+                         <div className="row align-items-center" id={2}>
+                           <div className="col-lg-4 col-md-5 col-sm-4 col-4 nopadding">
+                             <label>Book Format</label>
+                           </div>
+                           <div className="col-lg-8 col-md-7 col-sm-8 col-8 nopadding">
+                             <span className="delimiter"></span>
+                             <select                                         
                                onChange={this.handleChangeSelect}   
                                value={this.state.value}  
                                name="bookFormat"
                                id="bookFormat" 
                                ref="bookFormat"  
-                               required  
-                               className="form-control"                                  
+                               required                                    
 
                              >
                                <option
@@ -1067,13 +1124,17 @@ class Roy1 extends Component {
                                  Ebook
                                </option>
                              </select>
-                </div>    
-                   </div>
-                   
-                    <div className="form-group row">
-                <label for="No of Pages" className="col-sm-5 col-form-label">Book Size </label>
-                <div className="col-sm-7">
-                 <select id="booksize" name="booksize" ref="bookSize" required  className="form-control">
+                           </div>
+                         </div>
+                       </div>
+                       <div className="col-lg-12">
+                         <div className="row align-items-center" id={3}>
+                           <div className="col-lg-4 col-md-5 col-sm-4 col-4 nopadding">
+                             <label>Book Size</label>
+                           </div>
+                           <div className="col-lg-8 col-md-7 col-sm-8 col-8 nopadding">
+                             <span className="delimiter"></span>
+                             <select id="booksize" name="booksize" ref="bookSize" required>
                                <option value="5x8" selected="selected">
                                  5" x 8"
                                </option>
@@ -1082,79 +1143,150 @@ class Roy1 extends Component {
                                {/*<option value="216-216">8.5" x 8.5"</option>*/}
                                <option value="8.5x11">8.5" x 11"</option>
                              </select>
-                </div>    
-                   </div>
-                   
-                    <div className="form-group row">
-                <label for="No of Pages" className="col-sm-5 col-form-label">Book Type </label>
-                <div className="col-sm-7">
-                  <select id="bookColor" name="bookcolor"  ref="bookColor"  className="form-control" required>
+                           </div>
+                         </div>
+                       </div>
+                       <div className="col-lg-12">
+                         <div className="row align-items-center" id={4}>
+                           <div className="col-lg-4 col-md-5 col-sm-4 col-4 nopadding">
+                             <label>Book Type</label>
+                           </div>
+                           <div className="col-lg-8 col-md-7 col-sm-8 col-8 nopadding">
+                             <span className="delimiter"></span>
+                             <select id="bookColor" name="bookcolor"  ref="bookColor" required>
                                <option value="bw" selected="selected">
                                  Black &amp; White
                                </option>
                                {/*<option value="color">Full Color</option>*/}
                              </select>
-                </div>    
+                           </div>
+                         </div>
+                       </div>
+                     </div>
                    </div>
-                 <button                                  
-                       className="form-control btn btn-info font-weight-bold mt-4"
+                   <div className="col-lg-12 button text-center">
+                     <button                                  
+                       className="btn btn-primary"
                        onClick={this.handleResult}
                      >
                        Calculate
                      </button>
-                   
-              
-            </div>
-            <div className="card-footer">
-                <table className="table">
-                    <tr>
-                    <th>Production Cost</th>
-                    <td>:</td>
-                    <td> <span className="result prodcostx" id="prodcost">
-                               Rs. {this.state.prodcostx}
-                             </span></td>
-                    </tr>
-                    
-                     <tr>
-                    <th>Production Cost</th>
-                    <td>:</td>
-                    <td><span className="value prodsubcostx" id="prodsubcostx">
-                             Rs. {this.state.prodsubcostx}
-                             </span></td>
-                    </tr>
-                    
-                     <tr>
-                    <td colspan="3">This is the price at which you can purchase your own book the minimum number of copies per order is 20.</td>
-                    </tr>
-                </table>
-            </div>
-         </div>
-     </div> 
-     <div class="col-md-6 mt-sm">
-               <div class="card shadow ">
-                  <div class="card-header text-center font-weight-bold text-light bg-info text-uppercase">
-                     Author Earning Calculator
-                  </div>
-                  <div class="card-body">
-                   
-                        <tr>
-                           <td colspan="3">This is the price at which you can purchase your own book the minimum number of copies per order is 20.</td>
-                        </tr>
-                        
-                        <br/> 
-                        <div class="form-group row">
-                           <label for="No of Pages" class="col-sm-5 col-form-label">Minimum Recommended Price</label>
-                           <div class="col-sm-7">
-                              <input type="text" class="form-control" id="" placeholder="" value= {this.state.minprice} disabled/>
+                   </div>
+                   <div
+                     className="bottombox col-lg-12"
+                     style={{ minHeight: 231 }}
+                   >
+                     <div className="row calculation-section">
+                       <div className="col-lg-12 row-class">
+                         <div className="row align-items-center">
+                           <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
+                             <label>Production Cost </label>
                            </div>
-                        </div>
-                        <div class="form-group row">
-                           <label for="No of Pages" class="col-sm-5 col-form-label">Minimum Recommended Price (INR)</label>
-                           <div class="col-sm-7">
+                           <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
+                             <span className="delimiter"></span>
+                             {/* <p className="result">{this.state.result}</p> */}
                              
-                              <input
+                             <span className="result prodcostx" id="prodcost">
+                               Rs. {this.state.prodcostx}
+                             </span>
+                           </div>
+                         </div>
+                       </div>
+                       <div className="col-lg-12 row-class toppadding">
+                         <div className="row align-items-start">
+                           <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
+                             <label>
+                               Author copies - at subsidized price{" "}
+                             </label>
+                           </div>
+                           <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
+                             <span className="delimiter"> </span>
+                             <span className="value prodsubcostx" id="prodsubcostx">
+                             Rs. {this.state.prodsubcostx}
+                             </span>
+                           </div>
+                         </div>
+                       </div>
+                       <p className="col-lg-12">
+                         This is the price at which you can purchase your own
+                         book. The minimum number of copies per order is 20.
+                       </p>
+                      
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+           <div className="col-lg-6 col-md-6 authorroyalty col-md-nopadding col-md-padding-7 card2">
+             <div className="col-lg-12 col-xl-11 mr-xl-auto col-md-padding-7 col-md-nopadding margin-top-20">
+               <div className="col-lg-12 nopadding">
+                 <h4>AUTHOR EARNINGS CALCULATOR</h4>
+               </div>
+               {/* <form
+                 id="authorRoyalty"
+                 className="formcontainer col-lg-12 nopadding"
+               >*/}
+                 <input type="hidden" name="VISITS" defaultValue={1} />
+                 <input
+                   type="hidden"
+                   name="ILANDPAGE"
+                   defaultValue="https%3A//notionpress.com/pod-royalty-calculator"
+                 />
+                 <input
+                   type="hidden"
+                   name="LREFERRER"
+                   defaultValue="https%3A//www.google.com/"
+                 />
+                 <input
+                   type="hidden"
+                   name="IREFERRER"
+                   defaultValue="https%3A//www.google.com/"
+                 />
+                 <input
+                   type="hidden"
+                   defaultValue="diy"
+                   name="publishingmode"
+                 />
+                 <div
+                   className="centerbox col-lg-12"
+                   style={{ minHeight: 251 }}
+                 >
+                   <div className="row align-items-center">
+                     <div className="get_values col-lg-12">
+                       <div
+                         className="alert alert-danger hidealert"
+                         id="setmrprequired"
+                         style={{ display: "none" }}
+                       >
+                         MRP needs to be set.
+                       </div>
+                       <div
+                         className="alert alert-danger hidealert"
+                         id="setmrpgreater"
+                         style={{ display: "none" }}
+                       >
+                         The Set MRP needs to be greater than the Minimum MRP.
+                       </div>
+                       <div
+                         className="alert alert-danger hidealert"
+                         id="setmrpnumeric"
+                         style={{ display: "none" }}
+                       >
+                         MRP has to be numeric.
+                       </div>
+                       <p>
+                         Set a selling price above the Minimum Selling Price
+                         and hit 'Calculate' to see how much you earn.
+                       </p>
+                       <div className="row align-items-center paddingtop">
+                         <div className="col-lg-4 col-md-5 col-sm-4 col-4 nopadding">
+                           <label>Set Selling Price</label>
+                         </div>
+                         <div className="col-lg-8 col-md-7 col-sm-8 col-8 nopadding">
+                           <span className="delimiter"></span>
+                           <input
                              type="number"
-                              class="form-control"
                              onChange={this.handleOnChange1}
                              id="setmrp"
                              name="setmrp"
@@ -1162,46 +1294,87 @@ class Roy1 extends Component {
                              ref="setmrp"
                              required
                            />
-                           </div>
-                        </div>
+                         </div>
+                       </div>
+                       <div className="row align-items-xl-end align-items-md-end align-items-sm-end align-items-center align-items-lg-center">
+                         <div className="col-lg-12 col-md-5 col-sm-4 col-4 nopadding">
+                           <label>Minimum Recommended Price</label><span id="minmrp">Rs. {this.state.minprice}</span>
+                         </div>
+                         
+                       </div>
                        
-                        <button
-                     className="form-control btn btn-info"
+                     </div>
+                   </div>
+                 </div>
+                 <div className="col-lg-12 button text-center">
+                   <button
+                     className="btn btn-primary"
                      onClick={this.handleResult1}
                    >
                      Calculate
                    </button>
-                     
-                  </div>
-                  <div class="card-footer pb-5">
-                     <table class="table">
-                        <tr>
-                           <th>Channel</th>
-                           <td></td>
-                           <th>Author Earning Per Copy</th>
-                        </tr>
-                        <tr>
-                           <th>BFC Publication</th>
-                           <td>: </td>
-                           <td> Rs. {this.state.bfcprice}</td>
-                        </tr>
-                        <tr>
-                           <th>Other Stores</th>
-                           <td>:</td>
-                           <td>Rs. {this.state.otherprice} </td>
-                        </tr>
-                     </table>
-                  </div>
-               </div>
-            </div>
-       
-     
-   </div>
+                  
+                   
+                 </div>
+                 <div
+                   className="bottombox col-lg-12 display_values calculation-section"
+                   style={{ minHeight: 231 }}
+                 >
+                   <div className="row align-items-center">
+                     <div className="col-lg-12">
+                       <div className="row">
+                         <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
+                           <label className="heading">Channel</label>
+                         </div>
+                         <div className="col-lg-6 col-md-6 col-sm-6 col-6">
+                           <span className="heading">
+                             Author earnings per copy
+                           </span>
+                         </div>
+                       </div>
+                     </div>
+                     <div className="col-lg-12 row-class paddingtop ">
+                       <div className="row">
+                         <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
+                           <label>BFC Publications</label>
+                         </div>
+                         <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
+                           <span className="delimiter"></span>
+                           <span id="npauthorprofit" className="result value">
+                             Rs. {this.state.bfcprice}
+                           </span>
+                         </div>
+                       </div>
+                     </div>
+                     <div className="col-lg-12 row-class paddingtop">
+                       <div className="row">
+                         <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
+                           <label>Other Stores</label>
+                         </div>
+                         <div className="col-lg-6 col-md-6 col-sm-6 col-6 nopadding">
+                           <span className="delimiter"></span>
+                           <span
+                             id="flipkartauthorprofit"
+                             className="result value"
+                           >
+                             Rs.  {this.state.otherprice}
+                           </span>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               {/*</form>*/}
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
    </div>
    <div className="col-lg-12 faq-block" style={{}}>
      <div className="row guidedfaq greybg">
        <div className="container">
-       
+         <hr/>
          <div className="row">
            <div className="col-lg-12 mx-auto">
              <h4>Frequently Asked Questions</h4>
@@ -1252,7 +1425,8 @@ class Roy1 extends Component {
        </div>
      </div>
    </div>{" "}
-  
+ </div>
+</div>    
 <hr/>
 
 
@@ -1308,13 +1482,5 @@ const ProductWrapper = styled.div`
   background-color: #1b8bcc;
   color:#000;
 }
-.card-footer{
-  background-color: #deeff7;
-  }
-  @media only screen and (max-width: 600px) {
-  .mt-sm {
-  margin-top: 4rem;
-  }
-  }
 `;
 export default Roy1
