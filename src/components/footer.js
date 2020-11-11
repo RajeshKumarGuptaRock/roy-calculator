@@ -29,29 +29,29 @@ class Footer extends Component {
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3 footer-col">
         <div class="footer-block footer-block-3 border-bottom1">
-          <h4 className="text">
+          <h4 className="padding">
           Stay Connected
           </h4>
           <div class="content">
             <ul class="widget-social-icon">
               <li>
               <a target="_blank" href="https://www.facebook.com/BFC-Publications-663170264296179" class="social-icon-inner facebook" title="Facebook">
-              <i class="fa fa-facebook"></i><span className="text">Facebook</span>
+              {/*<i class="fa fa-facebook"></i>*/}<span className="text">Facebook</span>
               </a>
               </li>
               <li>
               <a target="_blank" href="https://twitter.com/BfcPublications" class="social-icon-inner twitter" title="Twitter">
-              <i class="fa fa-twitter"></i><span className="text"> Twitter</span>
+              {/*<i class="fa fa-twitter"></i>*/}<span className="text"> Twitter</span>
               </a>
               </li>
               <li>
               <a target="_blank" href="https://www.linkedin.com/company/bfc-publications" class="social-icon-inner google" title="Google Plus">
-              <i class="fa fa-linkedin"></i><span className="text">Linkedin</span>
+              {/*<i class="fa fa-linkedin"></i>*/}<span className="text">Linkedin</span>
               </a>
               </li>
               <li>
               <a target="_blank" href="https://www.instagram.com/bfc_publications/" class="social-icon-inner instagram" title="Instagram">
-              <i class="fa fa-instagram"></i><span className="text"> Instagram</span>
+              {/*<i class="fa fa-instagram"></i>*/}<span className="text"> Instagram</span>
               </a>
               </li>
             </ul>
@@ -60,7 +60,7 @@ class Footer extends Component {
       </div>
         <div class="col-xs-12 col-sm-6 col-md-2 footer-col">
         <div class="footer-block footer-block-4">
-        <h4>
+        <h4 className="padding">
         Information
         </h4>
         <div class="content">
@@ -105,13 +105,36 @@ const ProductWrapper = styled.div`
 .rock{
   
   COLOR: #fff;
-  background-color: #67a7d3;
+  background-color: #1b8bcc;
   padding-top: 10px;
   
 }
+h4{
+  font-family: "Montserrat",Arial,Helvetica,sans-serif;
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 20px;
+    padding: 5px 0 0 0;
+    overflow: hidden;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+.footer-widgets {
+  padding: 40px 0 45px;
+}
+.footer-block .footer-menu {
+  margin: 0;
+  list-style: none;
+}
+.padding{
+  padding-left: 37px;
+  font-size: 15px;
+}
+
 .text{
     COLOR: #fff;
     list-style-type:none;
+    font-size: 12px;
 }
 ul li{
     list-style-type:none;

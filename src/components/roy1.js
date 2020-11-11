@@ -1116,7 +1116,7 @@ class Roy1 extends Component {
                     </tr>
                     
                      <tr>
-                    <th>Production Cost</th>
+                    <th>Author copies -at subsidized price</th>
                     <td>:</td>
                     <td><span className="value prodsubcostx" id="prodsubcostx">
                              Rs. {this.state.prodsubcostx}
@@ -1150,7 +1150,7 @@ class Roy1 extends Component {
                            </div>
                         </div>
                         <div class="form-group row">
-                           <label for="No of Pages" class="col-sm-5 col-form-label">Minimum Recommended Price (INR)</label>
+                           <label for="No of Pages" class="col-sm-5 col-form-label"> Set Selling Price (INR)</label>
                            <div class="col-sm-7">
                              
                               <input

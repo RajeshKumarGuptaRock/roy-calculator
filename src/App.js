@@ -33,11 +33,11 @@ class App extends Component {
               Royalty Calculator
               </Link>
             </li>
-            <li className="nav-item">
+            {/*<li className="nav-item">
               <Link to={"/https://bfcpublications.com/login"} className="nav-link">
                 Author Dashboard
               </Link>
-            </li>
+            </li>*/}
           </div>
         </NavWrapper>
      }
