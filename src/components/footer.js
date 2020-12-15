@@ -4,9 +4,9 @@ import styled from 'styled-components';
 class Footer extends Component {
     render() {
       return (
-        <ProductWrapper className="col-lg-12 col-sm-12 rock">
-        <div class="footer-widgets rock">
-  <div className="container rock">
+        <ProductWrapper className="col-lg-12 col-sm-12 rock " >
+        <div class="footer-widgets rock pt-5">
+  <div className="container rock ">
     <div className="row">
     <div class="col-xs-12 col-sm-6 col-md-3 footer-col">
         <div class="footer-block footer-block-2">
@@ -108,6 +108,10 @@ const ProductWrapper = styled.div`
   background-color: #1b8bcc;
   padding-top: 10px;
   
+}
+.pt-5{
+padding-top:5rem;
+margin-top:5rem;
 }
 h4{
   font-family: "Montserrat",Arial,Helvetica,sans-serif;

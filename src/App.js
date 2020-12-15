@@ -1,55 +1,46 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 
-
-
-
-//import "./bootstrap.min.css";
-//import Navebar from './components/Navebar';
-import AddTutorial from "./components/add-tutorial.component";
-import Tutorial from "./components/tutorial.component";
-import TutorialsList from "./components/tutorials-list.component";
-import Agam from "./components/agam";
-import Roy from "./components/roy";
 import Roy1 from "./components/roy1";
+import royaltyCalculator from "./components/royaltyCalculator";
 import Footer from "./components/footer";
-
 import styled from 'styled-components';
 class App extends Component {
   render() {
     return (
       <div>
         { 
-        <NavWrapper className="navbar navbar-expand border-bottom">
-          <Link className="navbar-brand" to="https://bfcpublications.com">
-              <img src="https://bfcpublications.com/public/frontendAssets/images/htt-logo.jpg"  height="50px" width="200px" alt="store" className="navbar-brand"/>
-          </Link>
-        
-          <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/roy1"} className="nav-link">
-              Royalty Calculator
-              </Link>
-            </li>
-            {/*<li className="nav-item">
-              <Link to={"/https://bfcpublications.com/login"} className="nav-link">
-                Author Dashboard
-              </Link>
-            </li>*/}
+             <nav className="navbar navbar-default">
+        <div className="container">
+          {/* BRAND */}
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#alignment-example" aria-expanded="false">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar" />
+              <span className="icon-bar" />
+              <span className="icon-bar" />
+            </button>
+            <a className="navbar-brand " href="https://bfcpublications.com/" ><img src="http://demobfcpublication.ga/bfcweb/images/logos/bfc-publications-logo.png"  alt="store" /></a>
           </div>
-        </NavWrapper>
+          {/* COLLAPSIBLE NAVBAR */}
+          <div className="collapse navbar-collapse" id="alignment-example">
+            {/* Links */}
+            <ul className="nav navbar-nav navbar-right" >
+              <li className="active"><a href="https://bfcpublications.com/"> Home<span className="sr-only">(current)</span></a></li>
+              <li className=""><a href="#"> Royalty Calculator<span className="sr-only">(current)</span></a></li>
+          
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+      
      }
-        <div className="container mt-3">
+        <div className="container-fluid mt-3">
           <Switch>
-            <Route exact path={["/", "/tutorials"]} component={TutorialsList} />
-            <Route exact path="/add" component={AddTutorial} />
-            <Route path="/tutorials/:id" component={Tutorial} />
-            <Route path="/agam" component={Agam} />
-            <Route path="/roy" component={Roy} />
+            
             <Route path="/roy1" component={Roy1} />
-
+            <Route path="/royaltyCalculator" component={royaltyCalculator} />
           </Switch>
         </div>
         <Footer/>
@@ -81,6 +72,20 @@ const footerwrapper = styled.div`
 .rock{
   background-color: #1b8bcc;
   color:#000;
+}
+.w-100{
+width:100%;
+}
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 0px 0px !important;
+    font-size: 18px;
+    line-height: 20px;
+}
+.navbar-brand.img {
+   
+margin-bottom:100px;
 }
 
 `;
