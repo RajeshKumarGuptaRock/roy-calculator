@@ -2255,8 +2255,8 @@ class royaltyCalculator extends Component {
                   <div className="col-md-6">
                   <div class="inputBox">
                   <select id="booksize" name="booksize" ref="bookSize" required  className="input select">
-                                <option value="Select" >Select Book Size
-                               </option>
+                                {/* <option value="Select" >Select Book Size
+                               </option> */}
                                <option value="5x8">
                                  5" x 8"
                                </option>
@@ -2353,7 +2353,7 @@ class royaltyCalculator extends Component {
                   </div>
                   <div className="col-md-7">
                     <div className="form__group field">
-                      <input  ref="selmrp" onChange={this.handleOnChange1} value={this.state.setmrp} ref="setmrp" type="input" className="form__field" placeholder="Set MRP (INR)" id="Set MRP (INR)" name="Set MRP (INR)" required />
+                      <input  ref="selmrp" onChange={this.handleOnChange1} value={this.state.selmrp} ref="setmrp" type="number" className="form__field" placeholder="Set MRP (INR)" id="selmrp" name="selmrp" required />
                       <label htmlFor="Set MRP (INR)" className="form__label">MRP here</label>
                       
                       <span style={{color: "red"}}>{this.state.errors["setminprice"]}</span>
