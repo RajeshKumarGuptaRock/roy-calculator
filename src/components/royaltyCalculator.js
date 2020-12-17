@@ -2872,7 +2872,7 @@ color:#000 !important;
 }
 .img-calc{
 width:100%;
-height:100vh;
+height:88vh;
 object-fit: cover;
 }
 `;
