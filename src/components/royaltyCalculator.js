@@ -2127,7 +2127,7 @@ class royaltyCalculator extends Component {
             <label style={{fontSize: '15px',color:'#000'}} className="">Author's Copy - at Subsidised Price : <span className="text-danger"> ₹{this.state.prodsubcostx}</span></label>
             <p style={{fontSize: '13px',marginLeft: '2rem'}} className="text-left">
 		This is the price at which author can purchase his/her own book from us.<br/>
-		Minimum number of copies per order is 20. Delivery charges extra as per Location.
+		Minimum number of copies per order is 20. Delivery charges extra as per location.
             </p>
           </div>
         </div>
