@@ -2150,7 +2150,7 @@ class royaltyCalculator extends Component {
                <div className="col-md-6 sm-pd">
             <div className="card br-20 shadow" style={{padding: '2rem', backgroundColor: 'white', borderRadius: '20px'}}>
               <div className="card-header br-10">
-                <h5 style={{}}>ENTER BOOK DETAILS</h5>
+                <h5 style={{}}>ENTER BOOK DETAILS test</h5>
               </div>
             
               <div className="card-body">
