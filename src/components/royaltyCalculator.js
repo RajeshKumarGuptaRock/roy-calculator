@@ -2328,7 +2328,7 @@ class royaltyCalculator extends Component {
               <div className="card-body">
                 <div className="row">
                   
-                  <div className="col-md-6">
+                  <div className="col-md-6 sm-pd">
                     {/*  */}
                     {productioncast1}
                   </div>
