@@ -2353,7 +2353,7 @@ class royaltyCalculator extends Component {
                   </div>
                   <div className="col-md-7">
                     <div className="form__group field">
-                      <input  ref="selmrp" onChange={this.handleOnChange1} value={this.state.selmrp} ref="setmrp" type="number" className="form__field" placeholder="Set MRP (INR)" id="selmrp" name="selmrp" required />
+                      <input  ref="selmrp" onChange={this.handleOnChange1} value={this.state.selmrp} ref="setmrp" type="number" className="form__field" placeholder="Set MRP (INR)" id="Set MRP (INR)" name="selmrp" required />
                       <label htmlFor="Set MRP (INR)" className="form__label">MRP here</label>
                       
                       <span style={{color: "red"}}>{this.state.errors["setminprice"]}</span>
