@@ -36,7 +36,7 @@ class royaltyCalculator extends Component {
           // bfcprice = '';
           errors["name"] = "Please enter the valid number of pages";
         }
-        if(fields <= 50){
+        if(fields <= 49){
           formIsValid = false;
           errors["name"] = "Number of pages should be more than 50.";
         }
