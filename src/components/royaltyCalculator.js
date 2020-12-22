@@ -2214,7 +2214,7 @@ class royaltyCalculator extends Component {
                                id="bookFormat" 
                                ref="bookFormat"  
                                required  
-                               className="input select select-spcl" 
+                               className="input select" 
                                 disabled
 
                              >
