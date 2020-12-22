@@ -2226,14 +2226,14 @@ class royaltyCalculator extends Component {
                                >
                                  Paperback
                                </option>
-                               {/* <option
+                                <option
                                  className="long-book"
-                                 value="Ebook"
+                                 value="Hard Bound"
                                  id="Ebook"
                                  style={{ display: "block" }}
                                >
-                                 Ebook
-                               </option> */}
+                                 Hard Bound
+                               </option> 
                              </select></div>
                     {/* <div className="custom-btn-container">
                       <span className="mycustombtn">
