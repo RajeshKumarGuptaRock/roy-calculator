@@ -16,33 +16,49 @@ class royaltyCalculator extends Component {
           errors: {},
           hidden:'true',
           hiddenProductioncast:"true",
+          hidebooktype:"true",
           
         };
         this.handleChangeSelect = this.handleChangeSelect.bind(this);
       }
       handleValidation(){
+        //if(this.refs.bookFormat.value=='Paperback'){
+        let bookFormat = this.refs.bookFormat.value;
+       // alert(bookFormat);
         let fields = this.refs.npages.value;
+       // alert(fields);
         let setminprice = this.refs.setmrp.value*1;
         
         let errors = {};
         let formIsValid = true;
     
         //No of pages
-        if(fields == ''){
-          formIsValid = false;
-          // this.setState({otherprice:});
-          // this.setState({bfcprice: });
-          // otherprice = '';
-          // bfcprice = '';
-          errors["name"] = "Please enter the valid number of pages";
-        }
-        if(fields <= 49){
-          formIsValid = false;
-          errors["name"] = "Number of pages should be more than 50.";
+        if(bookFormat == 'Paperback'){
+          if(fields == ''){
+            formIsValid = false;
+            errors["name"] = "Please enter the valid number of pages";
+          }
+          if(fields <= 49){
+            formIsValid = false;
+            errors["name"] = "Number of pages should be more than 49.";
+          }
+          this.setState({errors: errors});
         }
 
+        if(bookFormat == 'HardBound'){
+          if(fields == ''){
+            formIsValid = false;
+            errors["name"] = "Please enter the valid number of pages";
+          }
+          if(fields <= 49){
+            formIsValid = false;
+            errors["name"] = "Number of pages should be more than 99.";
+          }
+          this.setState({errors: errors});
+        }
+        
     
-        this.setState({errors: errors});
+        
         return formIsValid;
       }
       handleValidation1(){
@@ -92,20 +108,25 @@ class royaltyCalculator extends Component {
           if(minpricehidden == 0){
             errors["setminprice"] = "you have to first calculate production cast";
           }
-          
         }
-       
-    
         this.setState({errors: errors});
         return formIsValid;
       }
       handleOnChange = event => {
-     
+        
+        var hidebooktype ='';
+        if(this.refs.npages.value >=100){
+          hidebooktype = "true";
+        }else{
+          hidebooktype = "false";
+        }
+
         this.setState({npages: event.target.value});
+        this.setState({booktypeset: hidebooktype});
+        console.log(hidebooktype);
 
       }
 
-    //  handleOnChange1(event){ 
       handleOnChange1 = event => { 
         console.log("ffff Line48",event.target.value);
         this.setState({selmrp: event.target.value});
@@ -115,22 +136,27 @@ class royaltyCalculator extends Component {
 
 
       handleChangeSelect(event) {
-         //alert(event.target.value);
-        // rajesh
+        var hidebooktype ='';
+        if(this.refs.npages.value >=100){
+          hidebooktype = "true";
+        }else{
+          hidebooktype = "false";
+        }
         var footerhidden = '';
         var productioncast = '';
         if(event.target.value == 'Paperback'){
           footerhidden = "true";
           productioncast = "true";
         }
-        if(event.target.value == 'Ebook'){
-          footerhidden = "false";
-          productioncast = "false";
+        if(event.target.value == 'HardBound'){
+          footerhidden = "true";
+          productioncast = "true";
         }
 
        
         this.setState({
           hidden: footerhidden,
+          hidebooktype :hidebooktype,
           hiddenProductioncast:productioncast
         });
          console.log(event.target.value);
@@ -147,215 +173,7 @@ class royaltyCalculator extends Component {
         if(this.handleValidation()){
           let booktype=0;
           if(this.refs.bookFormat.value=='Paperback'){
-            //alert(bookFormat);
-              // if(this.refs.npages.value <= 72){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log("<= 72 5x8")
-              //     booktype=0.605
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.718
-              //     console.log(" <= 72 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.82
-              //     console.log(" <= 72 8.5x11")
-              //   }else{}
-              
-              // }else if(this.refs.npages.value >= 73 && this.refs.npages.value <=96){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 73 <=96 5x8")
-              //     booktype=0.605
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.718
-              //     console.log(" >= 73 <=96 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //       booktype=0.71
-              //       console.log(" >= 73 <=96 8.5x11")
-              //     }else{}
-              
-              // }else if(this.refs.npages.value >= 97 && this.refs.npages.value <=108 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 97 <=108 5x8")
-              //     booktype=0.533
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.602
-              //     console.log(">= 97 <=108 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.71
-              //     console.log(" >= 97 <=108 8.5x11")
-              //   }else{}
-              
-              // }else if(this.refs.npages.value >= 109 && this.refs.npages.value <=128 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 109 <=128 5x8")
-              //     booktype=0.533
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.602
-              //     console.log(">= 109 <=128 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.67
-              //     console.log(">= 109 <=128 8.5x11")
-              //   }else{}
-              
-              // }else if(this.refs.npages.value >= 129 && this.refs.npages.value <=148 ){
-              //     if(this.refs.bookSize.value =='5x8'){
-              //       console.log(">= 129 <=148 5x8")
-              //       booktype=0.460
-              //     }else if(this.refs.bookSize.value =='6x9'){
-              //       booktype=0.573
-              //       console.log(">= 129 <=148 6x9")
-              //     }else if(this.refs.bookSize.value =='8x11'){
-              //       booktype=0.65
-              //       console.log(">= 129 <=148 8.5x11")
-              //     }else{}
-                
-              // }else if(this.refs.npages.value >= 149 && this.refs.npages.value <=192 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 149 <=192 5x8")
-              //     booktype=0.460
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.573
-              //     console.log(">= 149 <=192 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.59
-              //     console.log(">= 149 <=192 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 193 && this.refs.npages.value <=216 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 193 <=216 5x8")
-              //     booktype=0.424
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.537
-              //     console.log(">= 193 <=216 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.59
-              //     console.log(">= 193 <=216 8.5x11")
-              //   }else{}
-        
-              // }else if(this.refs.npages.value >= 217 && this.refs.npages.value <=252 ){
-              
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log("5x8 >= 217  <=252  ")
-              //     booktype=0.424
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.537
-              //     console.log(">= 217  <=252 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.56
-              //     console.log(">= 217  <=252 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 253 && this.refs.npages.value <=256 ){
             
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 253 <=256 5x8")
-              //     booktype=0.424
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.537
-              //     console.log(">= 253 <=256 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.56
-              //     console.log(">= 253 <=2568.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 257 && this.refs.npages.value <=276 ){
-              
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 257 <=276 5x8")
-              //     booktype=0.413
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.515
-              //     console.log(">= 257 <=276 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.56
-              //     console.log(">= 257 <=276 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 277 && this.refs.npages.value <=320 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 277 <=320 5x8")
-              //     booktype=0.413
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.515
-              //     console.log(">= 277 <=320 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.56
-              //     console.log(">= 277 <=320 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 321 && this.refs.npages.value <=352 ){
-                
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 321 <=352 5x8")
-              //     booktype=0.405
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.500
-              //     console.log(" >= 321 <=3526x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.54
-              //     console.log(" >= 321 <=3528.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 353 && this.refs.npages.value <=384 ){
-              
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 353 <=384 5x8")
-              //     booktype=0.405
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.500
-              //     console.log(">= 353 <=384 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.53
-              //     console.log(">= 353 <=384 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 385 && this.refs.npages.value <=432 ){
-              
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 385  <=432  5x8")
-              //     booktype=0.405
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.500
-              //     console.log(">= 385  <=432  6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.52
-              //     console.log(">= 385  <=432  8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 433 && this.refs.npages.value <=492 ){
-              
-              //   if(this.refs.bookSize.value =='8.5x11'){
-              //     booktype=0.51
-              //     console.log(">= 433 <=492 8.5x11")
-              //   }if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 433 <=492 5x8")
-              //     booktype=0.405
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.500
-              //     console.log(">= 433 <=492 6x9")
-              //   }else{
-                  
-              //   }
-              // }else if(this.refs.npages.value >= 493 && this.refs.npages.value <=548 ){
-              
-              //   if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.41
-              //     console.log(">= 493 <=548 6x9")
-              //   }if(this.refs.bookSize.value =='5x8'){
-              //   booktype=0.405
-              //   console.log(">= 493 <=548 6x9")
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.500
-              //     console.log(">= 493 <=548 6x9")
-              //   }else{
-
-              //   }
-              // }else if(this.refs.npages.value >=549 ){
-              //   if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.51
-              //     console.log(">= 493 <=548 6x9")
-              //   }if(this.refs.bookSize.value =='5x8'){
-              //   booktype=0.405
-              //   console.log(">= 493 <=548 6x9")
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.500
-              //     console.log(">= 493 <=548 6x9")
-              //   }else{
-
-              //   }
-              // }else{}
               if(this.refs.npages.value <= 72){
                 if(this.refs.bookSize.value =='5x8'){
                   console.log("<= 72 5x8")
@@ -565,429 +383,13 @@ class royaltyCalculator extends Component {
                 }
               }else{}
               var prodcost = this.state.npages * booktype + 8.5;
-              //prodcost = parseFloat(prodcost).toFixed(2);
               var prodsubpercentage = (prodcost*15)/100
-
               var prodsubpercentagetot = prodcost + prodsubpercentage
               prodsubpercentagetot = parseFloat(prodsubpercentagetot).toFixed(2);
               var minprice = prodcost*2.5
               minprice = parseFloat(minprice).toFixed(2);
-          }else if(this.refs.bookFormat.value=='Ebook'){
-            //alert(bookFormat);
-              // if(this.refs.npages.value <= 72){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log("<= 72 5x8")
-              //     booktype=0.605
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.718
-              //     console.log(" <= 72 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.82
-              //     console.log(" <= 72 8.5x11")
-              //   }else{}
-              
-              // }else if(this.refs.npages.value >= 73 && this.refs.npages.value <=96){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 73 <=96 5x8")
-              //     booktype=0.605
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.718
-              //     console.log(" >= 73 <=96 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //       booktype=0.71
-              //       console.log(" >= 73 <=96 8.5x11")
-              //     }else{}
-              
-              // }else if(this.refs.npages.value >= 97 && this.refs.npages.value <=108 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 97 <=108 5x8")
-              //     booktype=0.533
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.602
-              //     console.log(">= 97 <=108 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.71
-              //     console.log(" >= 97 <=108 8.5x11")
-              //   }else{}
-              
-              // }else if(this.refs.npages.value >= 109 && this.refs.npages.value <=128 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 109 <=128 5x8")
-              //     booktype=0.533
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.602
-              //     console.log(">= 109 <=128 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.67
-              //     console.log(">= 109 <=128 8.5x11")
-              //   }else{}
-              
-              // }else if(this.refs.npages.value >= 129 && this.refs.npages.value <=148 ){
-              //     if(this.refs.bookSize.value =='5x8'){
-              //       console.log(">= 129 <=148 5x8")
-              //       booktype=0.460
-              //     }else if(this.refs.bookSize.value =='6x9'){
-              //       booktype=0.573
-              //       console.log(">= 129 <=148 6x9")
-              //     }else if(this.refs.bookSize.value =='8x11'){
-              //       booktype=0.65
-              //       console.log(">= 129 <=148 8.5x11")
-              //     }else{}
-                
-              // }else if(this.refs.npages.value >= 149 && this.refs.npages.value <=192 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 149 <=192 5x8")
-              //     booktype=0.460
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.573
-              //     console.log(">= 149 <=192 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.59
-              //     console.log(">= 149 <=192 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 193 && this.refs.npages.value <=216 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 193 <=216 5x8")
-              //     booktype=0.424
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.537
-              //     console.log(">= 193 <=216 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.59
-              //     console.log(">= 193 <=216 8.5x11")
-              //   }else{}
-        
-              // }else if(this.refs.npages.value >= 217 && this.refs.npages.value <=252 ){
-              
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log("5x8 >= 217  <=252  ")
-              //     booktype=0.424
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.537
-              //     console.log(">= 217  <=252 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.56
-              //     console.log(">= 217  <=252 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 253 && this.refs.npages.value <=256 ){
+          }else if(this.refs.bookFormat.value=='HardBound'){
             
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 253 <=256 5x8")
-              //     booktype=0.424
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.537
-              //     console.log(">= 253 <=256 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.56
-              //     console.log(">= 253 <=2568.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 257 && this.refs.npages.value <=276 ){
-              
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 257 <=276 5x8")
-              //     booktype=0.413
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.515
-              //     console.log(">= 257 <=276 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.56
-              //     console.log(">= 257 <=276 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 277 && this.refs.npages.value <=320 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 277 <=320 5x8")
-              //     booktype=0.413
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.515
-              //     console.log(">= 277 <=320 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.56
-              //     console.log(">= 277 <=320 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 321 && this.refs.npages.value <=352 ){
-                
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 321 <=352 5x8")
-              //     booktype=0.405
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.500
-              //     console.log(" >= 321 <=3526x9")
-              //   }else if(this.refs.bookSize.value =='8.5x11'){
-              //     booktype=0.54
-              //     console.log(" >= 321 <=3528.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 353 && this.refs.npages.value <=384 ){
-              
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 353 <=384 5x8")
-              //     booktype=0.405
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.500
-              //     console.log(">= 353 <=384 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.53
-              //     console.log(">= 353 <=384 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 385 && this.refs.npages.value <=432 ){
-              
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 385  <=432  5x8")
-              //     booktype=0.405
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.500
-              //     console.log(">= 385  <=432  6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.52
-              //     console.log(">= 385  <=432  8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 433 && this.refs.npages.value <=492 ){
-              
-              //   if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.51
-              //     console.log(">= 433 <=492 8.5x11")
-              //   }if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 433 <=492 5x8")
-              //     booktype=0.405
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.500
-              //     console.log(">= 433 <=492 6x9")
-              //   }else{
-                  
-              //   }
-              // }else if(this.refs.npages.value >= 493 && this.refs.npages.value <=548 ){
-              
-              //   if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.51
-              //     console.log(">= 493 <=548 6x9")
-              //   }if(this.refs.bookSize.value =='5x8'){
-              //   booktype=0.405
-              //   console.log(">= 493 <=548 6x9")
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.500
-              //     console.log(">= 493 <=548 6x9")
-              //   }else{
-
-              //   }
-              // }else if(this.refs.npages.value >=549 ){
-              //   if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.51
-              //     console.log(">= 493 <=548 6x9")
-              //   }if(this.refs.bookSize.value =='5x8'){
-              //   booktype=0.405
-              //   console.log(">= 493 <=548 6x9")
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.500
-              //     console.log(">= 493 <=548 6x9")
-              //   }else{}
-              // }else{}
-              // if(this.refs.npages.value <= 72){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log("<= 72 5x8")
-              //     booktype=0.505
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.618
-              //     console.log(" <= 72 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.85
-              //     console.log(" <= 72 8.5x11")
-              //   }else{}
-                
-              // }else if(this.refs.npages.value >= 73 && this.refs.npages.value <=96){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 73 <=96 5x8")
-              //     booktype=0.505
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.618
-              //     console.log(" >= 73 <=96 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //       booktype=0.74
-              //       console.log(" >= 73 <=96 8.5x11")
-              //     }else{}
-    
-              // }else if(this.refs.npages.value >= 97 && this.refs.npages.value <=108 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 97 <=108 5x8")
-              //     booktype=0.433
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.502
-              //     console.log(">= 97 <=108 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.74
-              //     console.log(" >= 97 <=108 8.5x11")
-              //   }else{}
-    
-              // }else if(this.refs.npages.value >= 109 && this.refs.npages.value <=128 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 109 <=128 5x8")
-              //     booktype=0.433
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.502
-              //     console.log(">= 109 <=128 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.70
-              //     console.log(">= 109 <=128 8.5x11")
-              //   }else{}
-    
-              // }else if(this.refs.npages.value >= 129 && this.refs.npages.value <=148 ){
-              //     if(this.refs.bookSize.value =='5x8'){
-              //       console.log(">= 129 <=148 5x8")
-              //       booktype=0.360
-              //     }else if(this.refs.bookSize.value =='6x9'){
-              //       booktype=0.473
-              //       console.log(">= 129 <=148 6x9")
-              //     }else if(this.refs.bookSize.value =='8x11'){
-              //       booktype=0.68
-              //       console.log(">= 129 <=148 8.5x11")
-              //     }else{}
-                
-              // }else if(this.refs.npages.value >= 149 && this.refs.npages.value <=192 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 149 <=192 5x8")
-              //     booktype=0.360
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.473
-              //     console.log(">= 149 <=192 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.62
-              //     console.log(">= 149 <=192 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 193 && this.refs.npages.value <=216 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 193 <=216 5x8")
-              //     booktype=0.324
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.437
-              //     console.log(">= 193 <=216 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.62
-              //     console.log(">= 193 <=216 8.5x11")
-              //   }else{}
-    
-              // }else if(this.refs.npages.value >= 217 && this.refs.npages.value <=252 ){
-                
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log("5x8 >= 217  <=252  ")
-              //     booktype=0.324
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.437
-              //     console.log(">= 217  <=252 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.59
-              //     console.log(">= 217  <=252 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 253 && this.refs.npages.value <=256 ){
-    
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 253 <=256 5x8")
-              //     booktype=0.324
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.437
-              //     console.log(">= 253 <=256 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.59
-              //     console.log(">= 253 <=2568.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 257 && this.refs.npages.value <=276 ){
-                
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 257 <=276 5x8")
-              //     booktype=0.313
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.415
-              //     console.log(">= 257 <=276 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.59
-              //     console.log(">= 257 <=276 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 277 && this.refs.npages.value <=320 ){
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 277 <=320 5x8")
-              //     booktype=0.313
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.415
-              //     console.log(">= 277 <=320 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.57
-              //     console.log(">= 277 <=320 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 321 && this.refs.npages.value <=352 ){
-                
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 321 <=352 5x8")
-              //     booktype=0.305
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.400
-              //     console.log(" >= 321 <=3526x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.57
-              //     console.log(" >= 321 <=3528.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 353 && this.refs.npages.value <=384 ){
-                
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(" >= 353 <=384 5x8")
-              //     booktype=0.305
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.400
-              //     console.log(">= 353 <=384 6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.56
-              //     console.log(">= 353 <=384 8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 385 && this.refs.npages.value <=432 ){
-                
-              //   if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 385  <=432  5x8")
-              //     booktype=0.305
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.400
-              //     console.log(">= 385  <=432  6x9")
-              //   }else if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.55
-              //     console.log(">= 385  <=432  8.5x11")
-              //   }else{}
-              // }else if(this.refs.npages.value >= 433 && this.refs.npages.value <=492 ){
-                
-              //   if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.54
-              //     console.log(">= 433 <=492 8.5x11")
-              //   }if(this.refs.bookSize.value =='5x8'){
-              //     console.log(">= 433 <=492 5x8")
-              //     booktype=0.305
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.400
-              //     console.log(">= 433 <=492 6x9")
-              //   }else{
-                  
-              //   }
-              // }else if(this.refs.npages.value >= 493 && this.refs.npages.value <=548 ){
-                
-              //   if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.54
-              //     console.log(">= 493 <=548 6x9")
-              //   }if(this.refs.bookSize.value =='5x8'){
-              //     booktype=0.305
-              //     console.log(">= 493 <=548 6x9")
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.400
-              //     console.log(">= 493 <=548 6x9")
-              //   }else{
-    
-              //   }
-              // }else if(this.refs.npages.value >=549 ){
-              //   if(this.refs.bookSize.value =='8x11'){
-              //     booktype=0.54
-              //     console.log(">= 493 <=548 6x9")
-              //   }if(this.refs.bookSize.value =='5x8'){
-              //     booktype=0.305
-              //     console.log(">= 493 <=548 6x9")
-              //   }else if(this.refs.bookSize.value =='6x9'){
-              //     booktype=0.400
-              //     console.log(">= 493 <=548 6x9")
-              //   }else{
-    
-              //   }
-              // }else{}
               if(this.refs.npages.value <= 72){
                 if(this.refs.bookSize.value =='5x8'){
                   console.log("<= 72 5x8")
@@ -1196,13 +598,13 @@ class royaltyCalculator extends Component {
     
                 }
               }else{}
-              var prodcost = this.state.npages * booktype + 8.5;
-              prodcost = parseFloat(prodcost).toFixed(2);
-              var prodsubpercentage = (prodcost*15)/100
-              var prodsubpercentagetot = prodcost + prodsubpercentage
-              prodsubpercentagetot = parseFloat(prodsubpercentagetot).toFixed(2);
+              var prodcost1 = this.state.npages * booktype + 55;
+              prodcost = parseFloat(prodcost1).toFixed(2);
+              var prodsubpercentage = prodcost1 * 0.15;
+              var subsidPrice = prodcost1 + prodsubpercentage;
+              subsidPrice = parseFloat(subsidPrice).toFixed(2);
+              prodsubpercentagetot = subsidPrice;
               var minprice = prodcost*2.5
-              minprice = minprice*0.6
               minprice = parseFloat(minprice).toFixed(2);
           }else{}
             this.setState({
@@ -1228,214 +630,7 @@ class royaltyCalculator extends Component {
         if(this.handleValidation1()){
           let booktype=0;
           if(this.refs.bookFormat.value=='Paperback'){
-          // if(this.refs.npages.value <= 72){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log("<= 72 5x8")
-          //     booktype=0.505
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.618
-          //     console.log(" <= 72 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.85
-          //     console.log(" <= 72 8.5x11")
-          //   }else{}
-            
-          // }else if(this.refs.npages.value >= 73 && this.refs.npages.value <=96){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 73 <=96 5x8")
-          //     booktype=0.505
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.618
-          //     console.log(" >= 73 <=96 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //       booktype=0.74
-          //       console.log(" >= 73 <=96 8.5x11")
-          //     }else{}
-
-          // }else if(this.refs.npages.value >= 97 && this.refs.npages.value <=108 ){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 97 <=108 5x8")
-          //     booktype=0.433
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.502
-          //     console.log(">= 97 <=108 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.74
-          //     console.log(" >= 97 <=108 8.5x11")
-          //   }else{}
-
-          // }else if(this.refs.npages.value >= 109 && this.refs.npages.value <=128 ){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 109 <=128 5x8")
-          //     booktype=0.433
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.502
-          //     console.log(">= 109 <=128 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.70
-          //     console.log(">= 109 <=128 8.5x11")
-          //   }else{}
-
-          // }else if(this.refs.npages.value >= 129 && this.refs.npages.value <=148 ){
-          //     if(this.refs.bookSize.value =='5x8'){
-          //       console.log(">= 129 <=148 5x8")
-          //       booktype=0.360
-          //     }else if(this.refs.bookSize.value =='6x9'){
-          //       booktype=0.473
-          //       console.log(">= 129 <=148 6x9")
-          //     }else if(this.refs.bookSize.value =='8x11'){
-          //       booktype=0.68
-          //       console.log(">= 129 <=148 8.5x11")
-          //     }else{}
-            
-          // }else if(this.refs.npages.value >= 149 && this.refs.npages.value <=192 ){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(">= 149 <=192 5x8")
-          //     booktype=0.360
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.473
-          //     console.log(">= 149 <=192 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.62
-          //     console.log(">= 149 <=192 8.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 193 && this.refs.npages.value <=216 ){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(">= 193 <=216 5x8")
-          //     booktype=0.324
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.437
-          //     console.log(">= 193 <=216 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.62
-          //     console.log(">= 193 <=216 8.5x11")
-          //   }else{}
-
-          // }else if(this.refs.npages.value >= 217 && this.refs.npages.value <=252 ){
-            
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log("5x8 >= 217  <=252  ")
-          //     booktype=0.324
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.437
-          //     console.log(">= 217  <=252 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.59
-          //     console.log(">= 217  <=252 8.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 253 && this.refs.npages.value <=256 ){
-
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 253 <=256 5x8")
-          //     booktype=0.324
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.437
-          //     console.log(">= 253 <=256 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.59
-          //     console.log(">= 253 <=2568.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 257 && this.refs.npages.value <=276 ){
-            
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(">= 257 <=276 5x8")
-          //     booktype=0.313
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.415
-          //     console.log(">= 257 <=276 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.59
-          //     console.log(">= 257 <=276 8.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 277 && this.refs.npages.value <=320 ){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 277 <=320 5x8")
-          //     booktype=0.313
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.415
-          //     console.log(">= 277 <=320 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.57
-          //     console.log(">= 277 <=320 8.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 321 && this.refs.npages.value <=352 ){
-            
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 321 <=352 5x8")
-          //     booktype=0.305
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.400
-          //     console.log(" >= 321 <=3526x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.57
-          //     console.log(" >= 321 <=3528.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 353 && this.refs.npages.value <=384 ){
-            
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 353 <=384 5x8")
-          //     booktype=0.305
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.400
-          //     console.log(">= 353 <=384 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.56
-          //     console.log(">= 353 <=384 8.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 385 && this.refs.npages.value <=432 ){
-            
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(">= 385  <=432  5x8")
-          //     booktype=0.305
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.400
-          //     console.log(">= 385  <=432  6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.55
-          //     console.log(">= 385  <=432  8.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 433 && this.refs.npages.value <=492 ){
-            
-          //   if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.54
-          //     console.log(">= 433 <=492 8.5x11")
-          //   }if(this.refs.bookSize.value =='5x8'){
-          //     console.log(">= 433 <=492 5x8")
-          //     booktype=0.305
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.400
-          //     console.log(">= 433 <=492 6x9")
-          //   }else{
-              
-          //   }
-          // }else if(this.refs.npages.value >= 493 && this.refs.npages.value <=548 ){
-            
-          //   if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.54
-          //     console.log(">= 493 <=548 6x9")
-          //   }if(this.refs.bookSize.value =='5x8'){
-          //     booktype=0.305
-          //     console.log(">= 493 <=548 6x9")
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.400
-          //     console.log(">= 493 <=548 6x9")
-          //   }else{
-
-          //   }
-          // }else if(this.refs.npages.value >=549 ){
-          //   if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.54
-          //     console.log(">= 493 <=548 6x9")
-          //   }if(this.refs.bookSize.value =='5x8'){
-          //     booktype=0.305
-          //     console.log(">= 493 <=548 6x9")
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.400
-          //     console.log(">= 493 <=548 6x9")
-          //   }else{
-
-          //   }
-          // }else{}
+         
           if(this.refs.npages.value <= 72){
             if(this.refs.bookSize.value =='5x8'){
               console.log("<= 72 5x8")
@@ -1660,215 +855,8 @@ class royaltyCalculator extends Component {
           setbfcprice = parseFloat(setbfcprice).toFixed(2);
           var setohterprice = (mrp-(prodcost + othermrppercent))*85/100
           setohterprice = parseFloat(setohterprice).toFixed(2);
-          }else if(this.refs.bookFormat.value=='Ebook'){
-          // if(this.refs.npages.value <= 72){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log("<= 72 5x8")
-          //     booktype=0.505
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.618
-          //     console.log(" <= 72 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.72
-          //     console.log(" <= 72 8x11")
-          //   }else{}
-
-          // }else if(this.refs.npages.value >= 73 && this.refs.npages.value <=96){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 73 <=96 5x8")
-          //     booktype=0.505
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.618
-          //     console.log(" >= 73 <=96 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //       booktype=0.61
-          //       console.log(" >= 73 <=96 8.5x11")
-          //     }else{}
-
-          // }else if(this.refs.npages.value >= 97 && this.refs.npages.value <=108 ){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 97 <=108 5x8")
-          //     booktype=0.433
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.502
-          //     console.log(">= 97 <=108 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.61
-          //     console.log(" >= 97 <=108 8.5x11")
-          //   }else{}
-
-          // }else if(this.refs.npages.value >= 109 && this.refs.npages.value <=128 ){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 109 <=128 5x8")
-          //     booktype=0.433
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.502
-          //     console.log(">= 109 <=128 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.57
-          //     console.log(">= 109 <=128 8.5x11")
-          //   }else{}
-
-          // }else if(this.refs.npages.value >= 129 && this.refs.npages.value <=148 ){
-          //     if(this.refs.bookSize.value =='5x8'){
-          //       console.log(">= 129 <=148 5x8")
-          //       booktype=0.360
-          //     }else if(this.refs.bookSize.value =='6x9'){
-          //       booktype=0.473
-          //       console.log(">= 129 <=148 6x9")
-          //     }else if(this.refs.bookSize.value =='8x11'){
-          //       booktype=0.55
-          //       console.log(">= 129 <=148 8.5x11")
-          //     }else{}
-            
-          // }else if(this.refs.npages.value >= 149 && this.refs.npages.value <=192 ){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(">= 149 <=192 5x8")
-          //     booktype=0.360
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.473
-          //     console.log(">= 149 <=192 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.49
-          //     console.log(">= 149 <=192 8.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 193 && this.refs.npages.value <=216 ){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(">= 193 <=216 5x8")
-          //     booktype=0.324
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.437
-          //     console.log(">= 193 <=216 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.49
-          //     console.log(">= 193 <=216 8.5x11")
-          //   }else{}
-
-          // }else if(this.refs.npages.value >= 217 && this.refs.npages.value <=252 ){
-
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log("5x8 >= 217  <=252  ")
-          //     booktype=0.324
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.437
-          //     console.log(">= 217  <=252 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.46
-          //     console.log(">= 217  <=252 8.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 253 && this.refs.npages.value <=256 ){
-
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 253 <=256 5x8")
-          //     booktype=0.324
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.437
-          //     console.log(">= 253 <=256 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.46
-          //     console.log(">= 253 <=2568.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 257 && this.refs.npages.value <=276 ){
-
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(">= 257 <=276 5x8")
-          //     booktype=0.313
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.415
-          //     console.log(">= 257 <=276 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.46
-          //     console.log(">= 257 <=276 8.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 277 && this.refs.npages.value <=320 ){
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 277 <=320 5x8")
-          //     booktype=0.313
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.415
-          //     console.log(">= 277 <=320 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.46
-          //     console.log(">= 277 <=320 8.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 321 && this.refs.npages.value <=352 ){
-            
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 321 <=352 5x8")
-          //     booktype=0.305
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.400
-          //     console.log(" >= 321 <=3526x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.44
-          //     console.log(" >= 321 <=3528.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 353 && this.refs.npages.value <=384 ){
-
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(" >= 353 <=384 5x8")
-          //     booktype=0.305
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.400
-          //     console.log(">= 353 <=384 6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.43
-          //     console.log(">= 353 <=384 8.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 385 && this.refs.npages.value <=432 ){
-
-          //   if(this.refs.bookSize.value =='5x8'){
-          //     console.log(">= 385  <=432  5x8")
-          //     booktype=0.305
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.400
-          //     console.log(">= 385  <=432  6x9")
-          //   }else if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.42
-          //     console.log(">= 385  <=432  8.5x11")
-          //   }else{}
-          // }else if(this.refs.npages.value >= 433 && this.refs.npages.value <=492 ){
-
-          //   if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.41
-          //     console.log(">= 433 <=492 8.5x11")
-          //   }if(this.refs.bookSize.value =='5x8'){
-          //     console.log(">= 433 <=492 5x8")
-          //     booktype=0.305
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.400
-          //     console.log(">= 433 <=492 6x9")
-          //   }else{
-              
-          //   }
-          // }else if(this.refs.npages.value >= 493 && this.refs.npages.value <=548 ){
-
-          //   if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.41
-          //     console.log(">= 493 <=548 6x9")
-          //   }if(this.refs.bookSize.value =='5x8'){
-          //   booktype=0.305
-          //   console.log(">= 493 <=548 6x9")
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.400
-          //     console.log(">= 493 <=548 6x9")
-          //   }else{
-
-          //   }
-          // }else if(this.refs.npages.value >=549 ){
-          //   if(this.refs.bookSize.value =='8x11'){
-          //     booktype=0.41
-          //     console.log(">= 493 <=548 6x9")
-          //   }if(this.refs.bookSize.value =='5x8'){
-          //   booktype=0.305
-          //   console.log(">= 493 <=548 6x9")
-          //   }else if(this.refs.bookSize.value =='6x9'){
-          //     booktype=0.400
-          //     console.log(">= 493 <=548 6x9")
-          //   }else{
-
-          //   }
-          // }else{}
+          }else if(this.refs.bookFormat.value=='HardBound'){
+        
           if(this.refs.npages.value <= 72){
             if(this.refs.bookSize.value =='5x8'){
               console.log("<= 72 5x8")
@@ -1895,7 +883,7 @@ class royaltyCalculator extends Component {
 
           }else if(this.refs.npages.value >= 97 && this.refs.npages.value <=108 ){
             if(this.refs.bookSize.value =='5x8'){
-              console.log(" >= 97 <=108 5x8")
+              console.log("HardBound >= 97 <=108 5x8")
               booktype=0.533
             }else if(this.refs.bookSize.value =='6x9'){
               booktype=0.602
@@ -2082,7 +1070,7 @@ class royaltyCalculator extends Component {
           // mrp = parseFloat(mrp).toFixed(2);
           // Rajesh
 
-          var prodcost = this.state.npages*booktype+8.5
+          var prodcost = this.state.npages*booktype+55
           //var mrp = this.state.setmrp
           //rajesh
           var mrp = this.state.selmrp;
@@ -2107,6 +1095,41 @@ class royaltyCalculator extends Component {
       var isLoggedIn = this.state.prodcostx;
       let person = null;
       let productioncast1 = null;
+      let booktype = null;
+      
+      if(this.state.booktypeset == 'true'){
+        booktype = (
+        <select onChange={this.handleChangeSelect}  value={this.state.value}  
+                               name="bookFormat" id="bookFormat" ref="bookFormat" required className="input select">
+          <option className="long-book"value="Paperback"id="Paperback"style={{ display:"block" }}>
+            Paperback
+          </option>
+          <option className="long-book" value="HardBound" id="HardBound"style={{ display: "block" }}>Hardbound
+          </option> 
+        </select>
+        );
+      }else{
+        booktype = (
+          <select onChange={this.handleChangeSelect}  value={this.state.value}  
+                                         name="bookFormat" id="bookFormat" ref="bookFormat" required className="input select">
+          
+          
+                                         <option
+                                           className="long-book"
+                                           value="Paperback"
+                                           id="Paperback"
+                                           style={{ display: "block" }}
+                                         >
+                                           Paperback
+                                         </option>
+                                         <option className="long-book" value="HardBound" id="HardBound"style={{ display: "block" }}>Hardbound
+          </option> 
+                                         
+          
+          
+                                       </select>
+                  );
+      }
       if(this.state.hiddenProductioncast == 'true'){
         productioncast1 = (
           <div className="card-right bg-gradient br-10" style={{width: '100%', textAlign: 'center', padding: ''}}>
@@ -2127,7 +1150,8 @@ class royaltyCalculator extends Component {
             <label style={{fontSize: '15px',color:'#000'}} className="">Author's Copy - at Subsidised Price : <span className="text-danger"> ₹{this.state.prodsubcostx}</span></label>
             <p style={{fontSize: '13px',marginLeft: '2rem'}} className="text-left">
 		This is the price at which author can purchase his/her own book from us.<br/>
-		Minimum number of copies per order is 20. Delivery charges extra as per location.
+		In case of <b>Paperback</b> minimum number of copies per order is 20. Delivery charges extra as per location.<br/>
+    In case of <b>Hardbound</b> minimum number of copies per order is 30. Delivery charges extra as per location.
             </p>
           </div>
         </div>
@@ -2173,6 +1197,20 @@ class royaltyCalculator extends Component {
                               required
 
                               />
+                              <input
+                              type="hidden"
+                              onChange={this.handleOnChange}
+                              id="booktypeset"
+                              name="booktypeset"
+                              value={this.state.booktypeset}
+                              ref="booktypeset"
+                              placeholder="npages"
+                              className="form__field"
+                              required
+
+                              />
+
+
 <span style={{color: "red"}}>{this.state.errors["name"]}</span>
                               <div
                               className="alert alert-danger hidealert"
@@ -2206,35 +1244,10 @@ class royaltyCalculator extends Component {
                   </div>
                   <div className="col-md-6">
             
-                  <div class="inputBox">
-                  <select                                         
-                               onChange={this.handleChangeSelect}   
-                               value={this.state.value}  
-                               name="bookFormat"
-                               id="bookFormat" 
-                               ref="bookFormat"  
-                               required  
-                               className="input select" 
-                                disabled
-
-                             >
-                               <option
-                                 className="long-book"
-                                 value="Paperback"
-                                 id="Paperback"
-                                 style={{ display: "block" }}
-                               >
-                                 Paperback
-                               </option>
-                                <option
-                                 className="long-book"
-                                 value="Hard Bound"
-                                 id="Ebook"
-                                 style={{ display: "block" }}
-                               >
-                                 Hard Bound
-                               </option> 
-                             </select></div>
+                  <div className="inputBox">
+                  {booktype}
+                  
+                            </div>
                     {/* <div className="custom-btn-container">
                       <span className="mycustombtn">
                         <input  ref="bookFormatPaperback" onChange={this.handleChangeSelect} value={this.state.value}  type="radio" data-type="radio_subservice" name="bookformat" id="royaltybookformat-paperback"/>
@@ -2253,7 +1266,7 @@ class royaltyCalculator extends Component {
                     <label style={{marginTop: '6px'}}> Book Size</label>
                   </div>
                   <div className="col-md-6">
-                  <div class="inputBox">
+                  <div className="inputBox">
                   <select id="booksize" name="booksize" ref="bookSize" required  className="input select">
                                 {/* <option value="Select" >Select Book Size
                                </option> */}
@@ -2287,7 +1300,7 @@ class royaltyCalculator extends Component {
                     <label style={{marginTop: '6px'}}> Book Type</label>
                   </div>
                   <div className="col-md-6">
-                  <div class="inputBox">
+                  <div className="inputBox">
                   <select id="bookColor" name="bookcolor"  ref="bookColor"  className="input select select-spcl" required disabled>
                                <option value="bw" selected="selected">
                                  Black &amp; White
