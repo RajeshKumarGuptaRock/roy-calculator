@@ -50,7 +50,7 @@ class royaltyCalculator extends Component {
             formIsValid = false;
             errors["name"] = "Please enter the valid number of pages";
           }
-          if(fields <= 49){
+          if(fields <= 99){
             formIsValid = false;
             errors["name"] = "Number of pages should be more than 99.";
           }
